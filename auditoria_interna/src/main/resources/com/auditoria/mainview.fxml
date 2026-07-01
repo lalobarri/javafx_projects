@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com" xmlns:fx="http://javafx.com" 
+            fx:controller="com.auditoria.controller.MainController" stylesheets="@styles.css" prefWidth="1050" prefHeight="650">
+    
+    <!-- Encabezado de la Aplicación -->
+    <top>
+        <VBox styleClass="header-panel">
+            <Label text="SISTEMA INTEGRADO DE AUDITORÍA INTERNA" styleClass="header-title"/>
+            <Label text="ISO 9001:2015 / ISO 21001:2018" styleClass="header-subtitle"/>
+        </VBox>
+    </top>
+
+    <!-- Barra Lateral: Selector de Requisitos -->
+    <left>
+        <VBox spacing="10" styleClass="sidebar-panel" prefWidth="250">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <Label text="Cláusulas Normativas" styleClass="sidebar-title"/>
+            <ListView fx:id="listViewRequisitos" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </left>
+
+    <!-- Panel Central: Formulario de Evaluación -->
+    <center>
+        <VBox spacing="20" styleClass="main-content">
+            <padding><Insets top="20" right="25" bottom="20" left="25"/></padding>
+            
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Label text="Requisito:" styleClass="section-label"/>
+                <Label fx:id="lblIdRequisito" styleClass="requisito-id-badge"/>
+            </HBox>
+
+            <VBox spacing="5" styleClass="card-panel">
+                <Label text="Preguntas Clave para el Entrevistado:" styleClass="field-title"/>
+                <Label fx:id="lblPreguntas" wrapText="true" styleClass="body-text-display"/>
+            </VBox>
+
+            <VBox spacing="5" styleClass="card-panel">
+                <Label text="Documentos / Registros a Solicitar:" styleClass="field-title"/>
+                <Label fx:id="lblDocumentos" wrapText="true" styleClass="body-text-display"/>
+            </VBox>
+
+            <!-- Selector de Dictamen -->
+            <VBox spacing="10">
+                <Label text="Dictamen de la Evaluación:" styleClass="field-title"/>
+                <HBox spacing="15">
+                    <RadioButton fx:id="radioCumple" text="Cumple" styleClass="radio-cumple"/>
+                    <RadioButton fx:id="radioNoCumple" text="No Cumple" styleClass="radio-no-cumple"/>
+                    <RadioButton fx:id="radioObservacion" text="Observación" styleClass="radio-observacion"/>
+                </HBox>
+            </VBox>
+
+            <!-- Área Extendida de Texto para Evidencias -->
+            <VBox spacing="5" VBox.vgrow="ALWAYS">
+                <Label text="Hallazgos y Evidencias Encontradas (Notas del Auditor):" styleClass="field-title"/>
+                <TextArea fx:id="txtObservaciones" wrapText="true" VBox.vgrow="ALWAYS" promptText="Escriba aquí de forma detallada los hechos observables, registros revisados y trazas del proceso..."/>
+            </VBox>
+
+            <!-- Panel de Acciones Finales -->
+            <HBox spacing="15" alignment="CENTER_RIGHT" styleClass="action-bar">
+                <ComboBox fx:id="comboExportFormat" promptText="Seleccionar Formato"/>
+                <Button fx:id="btnExportar" text="Generar Reporte Final" onAction="#handleExportar" styleClass="btn-primary"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
